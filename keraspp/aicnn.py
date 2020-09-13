@@ -14,21 +14,22 @@ from keras.utils import np_utils
 from keras.models import Model
 from keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 
-from . import skeras
-from . import sfile
+import keraspp.skeras as skeras
+import keraspp.sfile as sfile
 
 
 class CNN(Model):
-    def __init__(model, nb_classes, in_shape=None):
-        model.nb_classes = nb_classes
-        model.in_shape = in_shape
-        model.build_model()
-        super().__init__(model.x, model.y)
-        model.compile()
+    def __init__(self, nb_classes, in_shape=None):
+        super().__init__()
+        self.nb_classes = nb_classes
+        self.in_shape = in_shape
+        self.build_model()
+        super().__init__(self.x, self.y)
+        self.compile()
 
-    def build_model(model):
-        nb_classes = model.nb_classes
-        in_shape = model.in_shape
+    def build_model(self):
+        nb_classes = self.nb_classes
+        in_shape = self.in_shape
 
         x = Input(in_shape)
 
@@ -46,13 +47,13 @@ class CNN(Model):
 
         y = Dense(nb_classes, activation='softmax', name='preds')(h)
 
-        model.cl_part = Model(x, z_cl)
-        model.fl_part = Model(x, z_fl)
+        self.cl_part = Model(x, z_cl)
+        self.fl_part = Model(x, z_fl)
 
-        model.x, model.y = x, y
+        self.x, self.y = x, y
 
-    def compile(model):
-        Model.compile(model, loss='categorical_crossentropy',
+    def compile(self):
+        Model.compile(self, loss='categorical_crossentropy',
                       optimizer='adadelta', metrics=['accuracy'])
 
 
