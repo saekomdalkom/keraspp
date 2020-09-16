@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 import matplotlib
+import time
 
 def save_history_history(fname, history_history, fold=''):
     np.save(os.path.join(fold, fname), history_history)
@@ -25,6 +26,9 @@ def plot_acc(history, title=None):
     plt.ylabel('Accracy')
     plt.xlabel('Epoch')
     plt.legend(['Training data', 'Validation data'], loc=0)
+
+    current = time.strftime('%b_%d_%H_%M_%S', time.localtime(time.time()))
+    plt.savefig('result/accuracy_plot' + current + '.png')
     # plt.show()
 
 
@@ -40,6 +44,9 @@ def plot_loss(history, title=None):
     plt.ylabel('Loss')
     plt.xlabel('Epoch')
     plt.legend(['Training data', 'Validation data'], loc=0)
+
+    current = time.strftime('%b_%d_%H_%M_%S', time.localtime(time.time()))
+    plt.savefig('result/loss_plot' + current + '.png')
     # plt.show()
 
 
