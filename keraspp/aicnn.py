@@ -145,7 +145,7 @@ class Machine():
                             verbose=verbose, validation_data=(data.X_test, data.Y_test))
         return history
 
-    def run(self, epochs=5, batch_size=128, verbose=1):
+    def run(self, epochs=100, batch_size=128, verbose=1):
         data = self.data
         model = self.model
         fig = self.fig
