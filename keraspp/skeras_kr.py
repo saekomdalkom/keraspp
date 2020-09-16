@@ -32,7 +32,7 @@ def plot_acc(history, title=None):
     plt.xlabel('에포크')
     plt.legend(['학습 데이터 성능', '검증 데이터 성능'], loc=0)
 
-    current = time.strftime('%b_%d_%H_%M_%S', time.localtime(time.time()))
+    current = time.strftime('_%b_%d_%H_%M_%S', time.localtime(time.time()))
     plt.savefig('result/accuracy_plot' + current + '.png')
     # plt.show()
 
@@ -50,7 +50,7 @@ def plot_loss(history, title=None):
     plt.xlabel('에포크')
     plt.legend(['학습 데이터 성능', '검증 데이터 성능'], loc=0)
 
-    current = time.strftime('%b_%d_%H_%M_%S', time.localtime(time.time()))
+    current = time.strftime('_%b_%d_%H_%M_%S', time.localtime(time.time()))
     plt.savefig('result/loss_plot' + current + '.png')
     # plt.show()
 
